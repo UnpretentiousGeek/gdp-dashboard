@@ -1,7 +1,8 @@
 import streamlit as st
 from streamlit_js_eval import streamlit_js_eval, copy_to_clipboard, create_share_link, get_geolocation
 import json
+from geopy.geocoders import Nominatim
 
 if st.checkbox("Check my location"):
     loc = get_geolocation()
-    st.write(f"Your coordinates are {loc}")
+    st.write(f"Your coordinates are {loc['coords']['latitude']}")
