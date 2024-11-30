@@ -5,4 +5,24 @@ from geopy.geocoders import Nominatim
 
 if st.checkbox("Check my location"):
     loc = get_geolocation()
-    st.write(f"Your coordinates are {loc['coords']['latitude']}")
+
+
+geolocator = Nominatim(user_agent="location_finder")
+if loc:
+# Streamlit app
+    st.title("City, State, and Country Finder")
+
+    # Get latitude and longitude as input
+    latitude = loc['coords']['latitude']
+    longitude = loc['coords']['longitude']
+
+    if latitude and longitude:
+        location = geolocator.reverse((latitude, longitude), language="en")
+
+        if location:
+            address = location.address
+            st.write(f"Address: {address}")
+        else:
+            st.write("Location not found. Please check the coordinates.")
+    else:
+        st.write("Please enter valid coordinates.")
