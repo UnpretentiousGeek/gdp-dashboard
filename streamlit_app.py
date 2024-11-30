@@ -50,16 +50,15 @@ if loc:
     response = requests.get(url)
     data = response.json()
 
-    temp_kelvin = data['main']['temp']
-    feels_like_kelvin = data['main']['feels_like']
-    temp_min_kelvin = data['main']['temp_min']
-    temp_max_kelvin = data['main']['temp_max']
+    temp = data['main']['temp']
+    feels_like = data['main']['feels_like']
+    temp_min = data['main']['temp_min']
+    temp_max = data['main']['temp_max']
     humidity = data['main']['humidity']
 
-    st.write(
-        "location": location,
-        "temperature": round(temp, 2),
-        "feels_like": round(feels_like, 2),
-        "temp_min": round(temp_min, 2),
-        "temp_max": round(temp_max, 2),
-        "humidity": round(humidity, 2))
+    
+    st.write(f"temperature: {round(temp, 2)},
+        feels_like: {round(feels_like, 2)},
+        temp_min: {round(temp_min, 2)},
+        temp_max: {round(temp_max, 2)},
+        humidity: {round(humidity, 2)}")
