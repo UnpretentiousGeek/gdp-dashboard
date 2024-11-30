@@ -43,7 +43,7 @@ if loc:
 
 
     urlbase = "https://api.openweathermap.org/data/2.5/"
-    urlweather = f"weather?q={location}&appid={9f39a2530c261fcdfc2cee81821fff38}"
+    urlweather = f"weather?q={location}&appid={st.secrets['weather_key']}"
     url = urlbase + urlweather
 
 
