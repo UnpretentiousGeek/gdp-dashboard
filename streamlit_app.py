@@ -43,7 +43,7 @@ if loc:
 
 
     urlbase = "https://api.openweathermap.org/data/2.5/"
-    urlweather = f"weather?q={location}&appid={st.secrets['weather_key']}"
+    urlweather = f"weather?q={location}&appid={"9f39a2530c261fcdfc2cee81821fff38"}"
     url = urlbase + urlweather
 
 
@@ -57,8 +57,5 @@ if loc:
     humidity = data['main']['humidity']
 
     
-    st.write(f"temperature: {round(temp, 2)},
-        feels_like: {round(feels_like, 2)},
-        temp_min: {round(temp_min, 2)},
-        temp_max: {round(temp_max, 2)},
-        humidity: {round(humidity, 2)}")
+    st.write(
+        f"temperature: {round(temp, 2)}")
