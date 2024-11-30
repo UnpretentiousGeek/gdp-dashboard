@@ -13,8 +13,8 @@ if loc:
     st.title("City, State, and Country Finder")
 
     # Get latitude and longitude as input
-    latitude = loc['coords']['latitude']
-    longitude = loc['coords']['longitude']
+    latitude = 40.675143
+    longitude = -73.946319
 
     if latitude and longitude:
         location = geolocator.reverse((latitude, longitude), language="en")
