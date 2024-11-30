@@ -49,6 +49,7 @@ if loc:
 
     response = requests.get(url)
     data = response.json()
+    st.write(data)
 
     temp = data['main']['temp']
     feels_like = data['main']['feels_like']
