@@ -20,8 +20,15 @@ if loc:
         location = geolocator.reverse((latitude, longitude), language="en")
 
         if location:
-            address = location
-            st.write(f"Address: {address}")
+            address = location.raw.get('address', {})
+            city = address.get('city', '')
+            state = address.get('state', '')
+            country = address.get('country', '')
+
+            # Display the city, state, and country
+            st.write(f"City: {city}")
+            st.write(f"State: {state}")
+            st.write(f"Country: {country}")
         else:
             st.write("Location not found. Please check the coordinates.")
     else:
