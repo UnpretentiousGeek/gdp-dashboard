@@ -16,6 +16,8 @@ if st.checkbox("Check my location"):
 if loc:
     latitude = loc['coords']['latitude']
     longitude = loc['coords']['longitude']
+    st.write(latitude)
+    st.write(longitude)
 
     if latitude and longitude:
         location = geolocator.reverse((latitude, longitude), language="en")
