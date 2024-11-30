@@ -9,9 +9,6 @@ geocoder = OpenCageGeocode(api_key)
 if st.checkbox("Check my location"):
     loc = get_geolocation()
 
-
-geolocator = Nominatim(user_agent="location_finder")
-
 if loc:
     st.title("City, State, and Country Finder")
 
