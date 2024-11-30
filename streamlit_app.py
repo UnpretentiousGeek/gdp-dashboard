@@ -1,29 +1,33 @@
 import streamlit as st
 from streamlit_js_eval import streamlit_js_eval, copy_to_clipboard, create_share_link, get_geolocation
 import json
-from geopy.geocoders import Nominatim
+
+from reverse_geopy import GeoSearch
 
 if st.checkbox("Check my location"):
     loc = get_geolocation()
 
 
 geolocator = Nominatim(user_agent="location_finder")
+
 if loc:
-# Streamlit app
+
+    geosearch = GeoSearch()
+
+    # Streamlit app
     st.title("City, State, and Country Finder")
 
     # Get latitude and longitude as input
-    latitude = 40.675143
-    longitude = -73.946319
-
+    latitude = loc['coords']['latitude']
+    longitude = loc['coords']['longitude']
+    
     if latitude and longitude:
-        location = geolocator.reverse((latitude, longitude), language="en")
+        location = geosearch.query(lat=latitude, lon=longitude)
 
         if location:
-            address = location.raw.get('address', {})
-            city = address.get('city', '')
-            state = address.get('state', '')
-            country = address.get('country', '')
+            city = location.get("city", '')
+            state = location.get("state", '')
+            country = location.get("country", '')
 
             # Display the city, state, and country
             st.write(f"City: {city}")
