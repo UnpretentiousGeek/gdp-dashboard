@@ -1,7 +1,7 @@
 import streamlit as st
 from streamlit_js_eval import streamlit_js_eval, copy_to_clipboard, create_share_link, get_geolocation
 import json
-
+from openai import OpenAI
 from geopy.geocoders import Nominatim
 import requests
 
@@ -9,6 +9,8 @@ geolocator = Nominatim(user_agent="location_finder")
 
 # Streamlit app
 st.title("City, State, and Country Finder")
+client = OpenAI(api_key=st.secrets["openai_key"])
+
 
 if st.checkbox("Check my location"):
     loc = get_geolocation()
@@ -39,10 +41,25 @@ if loc:
         st.write("Please enter valid coordinates.")
 
     location = city + "," + state + "," + country
+    coor_message = f"""
+    This is the location {location}, format it in a way so that it is accepted by 
+    openweathermap API example if the location is "City of Syracuse,New York, United States"
+    format it as "Syracuse, NY", if just "New York,New York,United States" format it as
+    "New York City, NY" and only return the formatted location nothing else 
+
+    """
+    stream = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[{"role":"system","content": coor_message},
+                      {"role": "user", "content": location}]
+        )
+    
+    st.write(stream.choices[0].message.content)
+
     if "," in location:
 
         location = location.split(",")[0].strip()
-
+        st.write(location)
 
     urlbase = "https://api.openweathermap.org/data/2.5/"
     urlweather = f"weather?q={location}&appid={st.secrets['weather_key']}"
