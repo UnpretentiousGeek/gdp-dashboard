@@ -20,7 +20,7 @@ if loc:
         location = geolocator.reverse((latitude, longitude), language="en")
 
         if location:
-            address = location.address
+            address = location
             st.write(f"Address: {address}")
         else:
             st.write("Location not found. Please check the coordinates.")
