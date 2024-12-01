@@ -54,7 +54,7 @@ if loc:
                       {"role": "user", "content": location}]
         )
     
-    st.write(stream.choices[0].message.content)
+    location = stream.choices[0].message.content
 
     if "," in location:
 
