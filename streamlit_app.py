@@ -6,8 +6,8 @@ from streamlit_folium import folium_static
 st.title("Map")
 
 # Input fields for latitude and longitude
-latitude = st.number_input("Enter Latitude", value=0.0)
-longitude = st.number_input("Enter Longitude", value=0.0)
+latitude = st.number_input("Enter Latitude", value=0.0, format="%0.000001f")
+longitude = st.number_input("Enter Longitude", value=0.0, format="%0.000001f")
 
 if st.button("Show Location"):
     location = (latitude, longitude)
