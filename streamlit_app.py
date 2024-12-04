@@ -14,6 +14,6 @@ if st.button("Show Location"):
     m = folium.Map(location=location, zoom_start=13)
     folium.Marker(location, popup="Your Location").add_to(m)
     with st.sidebar:
-        folium_static(m, width=100, height=100)
+        folium_static(m, width=500, height=500)
 else:
     st.write("Please enter latitude and longitude to display the location.")
