@@ -10,7 +10,7 @@ latitude = st.text_input("Enter Latitude", placeholder = "0.00")
 longitude = st.text_input("Enter Longitude", placeholder = "0.00")
 
 if st.button("Show Location"):
-    location = (latitude, longitude)
+    location = (int(latitude), int(longitude))
     m = folium.Map(location=location, zoom_start=13)
     folium.Marker(location, popup="Your Location").add_to(m)
     folium_static(m)
