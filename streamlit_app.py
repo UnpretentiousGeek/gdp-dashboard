@@ -1,6 +1,6 @@
 import streamlit as st
 import folium
-from folium import folium_static
+from streamlit_folium import folium_static
 
 # Streamlit app
 st.title("Map")
